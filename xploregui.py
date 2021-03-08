@@ -399,7 +399,7 @@ class Experimentwindow:
         self.ab2["state"] = "disabled"
         self.ab3["state"] = "disabled"
         if whichbutton == self.correctanswer: #a correct answer
-            print("DEBUG MESSAGE: correct answer")
+            print("Correct answer")
             self.allanswers.append(1)
             if self.lastresult == 1:# >1 corrects in a row
                 self.nsameresult += 1
@@ -429,8 +429,8 @@ class Experimentwindow:
                     self.currentattenuation = 0.0
                     print("MINIMUM ATTENUATION REACHED!! CHECK STIMULUS DESIGN!")
         else:#a wrong answer
-            print("DEBUG MESSAGE: wrong answer")
-            print("DEBUG MESSAGE: expected answer " + str(self.correctanswer))
+            print("Wrong answer")
+            print("Expected answer " + str(self.correctanswer))
             self.allanswers.append(0)
             if self.lastresult == 1:# we have a negative reversal
                 self.nreversals += 1
@@ -553,20 +553,20 @@ def provideaudio(stim, att, force1=False):
         tatt = att
     #
     #generate ramp waveform
-    rampdur = 0.002#hardcoded should be exposed to user at some point
+    rampdur = 0.005#hardcoded 5ms should be exposed to user at some point [GUI TODO]
     on = np.sin(np.linspace(0,0.5*np.pi,int(round(rampdur*sample_rate))))
     #
     #1.generate masker (this can be silence, tone, bb-noise or notched noise
     if stim["Mstyle_int"] == 0:
-        print("DEBUG: Silent masker")
+        #print("DEBUG: Silent masker")
         masker = np.zeros((int(round(maxdur_s * sample_rate)),))#maxdur_s of silence
     else:
         if stim["Mstyle_int"] == 1:
-            print("DEBUG: Tone masker")
+            #print("DEBUG: Tone masker")
             t = np.linspace(0, Mdur_s, int(round(Mdur_s * sample_rate)), False)
             masker = np.sin(stim["Mfreq1_Hz"] * t * 2 * np.pi)
         elif stim["Mstyle_int"] == 2:
-            print("DEBUG: BBN masker")
+            #print("DEBUG: BBN masker")
             masker=np.random.uniform(
                 low=-1.0,
                 high=1.0,
@@ -580,7 +580,7 @@ def provideaudio(stim, att, force1=False):
                         order=13,#6
             )
         else:
-            print("DEBUG: NN masker")
+            #print("DEBUG: NN masker")
             masker=np.random.uniform(
                 low=-1.0,
                 high=1.0,
