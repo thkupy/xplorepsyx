@@ -286,19 +286,19 @@ class Experimentwindow:
         for col in range(4):
             self.frame.grid_columnconfigure(col, weight=1)
         self.ab1 = tk.Button(
-            self.frame, text="1", bg="white",
+            self.frame, text="1", bg="white", highlightbackground="white",
             state = "disabled",
             height=5, width=10, command=partial(self.answer,1),
         )
         self.ab1.grid(column=1, row=1,sticky="NSEW")
         self.ab2 = tk.Button(
-        self.frame, text="2", bg="white",
+        self.frame, text="2", bg="white", highlightbackground="white",
             state = "disabled",
             height=5, width=10, command=partial(self.answer,2),
         )
         self.ab2.grid(column=2, row=1,sticky="NSEW")
         self.ab3 = tk.Button(
-            self.frame, text="3", bg="white",
+            self.frame, text="3", bg="white", highlightbackground="white",
             state = "disabled",
             height=5, width=10, command=partial(self.answer,3),
         )
@@ -362,27 +362,27 @@ class Experimentwindow:
         self.gobuttonh["state"] = "disabled"
         #1111111111111111111111111111111111111
         time.sleep(1)
-        self.ab1.configure(bg="yellow")
+        self.ab1.configure(bg="yellow", highlightbackground="green")
         self.master.update()
         play_obj = sa.play_buffer(A["aud1"], 1, 2, 44100)
         play_obj.wait_done()
-        self.ab1.configure(bg="white")
+        self.ab1.configure(bg="white", highlightbackground="white")
         self.master.update()
         #222222222222222222222222222222222222
         time.sleep(1)
-        self.ab2.configure(bg="yellow")
+        self.ab2.configure(bg="yellow", highlightbackground="green")
         self.master.update()
         play_obj = sa.play_buffer(A["aud2"], 1, 2, 44100)
         play_obj.wait_done()
-        self.ab2.configure(bg="white")
+        self.ab2.configure(bg="white", highlightbackground="white")
         self.master.update()
         #3333333333333333333333333333333
         time.sleep(1)
-        self.ab3.configure(bg="yellow")
+        self.ab3.configure(bg="yellow", highlightbackground="green")
         self.master.update()
         play_obj = sa.play_buffer(A["aud3"], 1, 2, 44100)
         play_obj.wait_done()
-        self.ab3.configure(bg="white")
+        self.ab3.configure(bg="white", highlightbackground="white")
         self.master.update()
         self.ab1["state"] = "normal"
         self.ab2["state"] = "normal"
