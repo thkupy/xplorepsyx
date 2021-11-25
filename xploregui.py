@@ -488,6 +488,10 @@ class Experimentwindow:
             thrtext = "Masker threshold: "
         plt.title(thrtext + str(meanlast5) + "+/-" + str(round(stdlast5,2)))
         plt.show()
+        from datetime import datetime#new 2021-11-25, TK
+        N = datetime.now()#new 2021-11-25, TK
+        fname = "psyx__" + N.strftime("Y_%m_%d__%H_%M_%s") + "__out.csv"#new 2021-11-25, TK
+        np.savetxt(fname, result, delimiter=",", fmt="%.3d")#new 2021-11-25, TK
 
     def close_windows(self):
         self.master.destroy()
