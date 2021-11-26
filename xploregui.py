@@ -489,10 +489,17 @@ class Experimentwindow:
         plt.title(thrtext + str(meanlast5) + "+/-" + str(round(stdlast5,2)))
         plt.show()
         from datetime import datetime#new 2021-11-25, TK
+        import os
         N = datetime.now()#new 2021-11-25, TK
-        fname = "psyx__" + N.strftime("Y_%m_%d__%H_%M_%s") + "__out.csv"#new 2021-11-25, TK
-        np.savetxt(fname, result, delimiter=",", fmt="%.3d")#new 2021-11-25, TK
-
+        fname = "psyx_" + N.strftime("%Y%m%d_%H%M%S") + "_out.csv"#new 2021-11-25, TK
+        #np.savetxt(fname, result, delimiter=",", fmt="%.3d")#new 2021-11-25, TK
+        fl = open(fname, "w")# open file 
+        for line in result:
+            fl.write(str(line) + ",\n")#add newline character
+        fl.flush()
+        os.fsync(fl.fileno())
+        fl.close()
+        
     def close_windows(self):
         self.master.destroy()
 #----------------------------END OF GUI DEFINITIONS----------------------------
